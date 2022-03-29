@@ -32,10 +32,17 @@ packer.startup({
     use("wbthomason/packer.nvim")
     -------------------------- plugins -------------------------------------------
     -- 补全
-    use({"neovim/nvim-lspconfig", "williamboman/nvim-lsp-installer"})
-    use({'ms-jpq/coq_nvim', branch = 'coq',})
-    use({'ms-jpq/coq.artifacts', branch = 'artifacts',})
-    use({'ms-jpq/coq.thirdparty', branch = '3p',})
+    -- use({"neovim/nvim-lspconfig", "williamboman/nvim-lsp-installer"})
+    -- use({'ms-jpq/coq_nvim', branch = 'coq',})
+    -- use({'ms-jpq/coq.artifacts', branch = 'artifacts',})
+    -- use({'ms-jpq/coq.thirdparty', branch = '3p',})
+    use({'neoclide/coc.nvim', branch = 'release',})
+
+        -- bufferline
+    use({
+      "akinsho/bufferline.nvim",
+      requires = {"kyazdani42/nvim-web-devicons", "moll/vim-bbye"}
+    })
 
     -- nvim-tree
     use({

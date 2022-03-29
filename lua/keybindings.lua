@@ -229,8 +229,8 @@ pluginKeys.mapLSP = function(mapbuf)
   --[[
   Lspsaga 替换 gd
   -- ]]
-  mapbuf("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
-  -- mapbuf("n", "gd", "<cmd>Lspsaga preview_definition<CR>", opt)
+  -- mapbuf("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
+  mapbuf("n", "gd", "<Plug>(coc-definition)<CR>", opt)
 
   
   --[[

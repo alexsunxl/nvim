@@ -1,49 +1,40 @@
-local lsp = require("lspconfig")
-local coq = require("coq")
+-- let g:LanguageClient_serverCommands = {
+--   'rust': ['rust-analyzer'],}
 
--- print(vim.inspect(coq))
-
-
-lsp.tsserver.setup{}
-lsp.tsserver.setup(coq.lsp_ensure_capabilities{})
-vim.cmd('COQnow -s')
-
--- print(lsp.tsserver)
-
+local lspconfig = require('lspconfig')
 local lsp_installer = require("nvim-lsp-installer")
 
--- 安装列表
--- { key: 服务器名， value: 配置文件 }
--- key 必须为下列网址列出的 server name
--- https://github.com/williamboman/nvim-lsp-installer#available-lsps
-local servers = {
---   sumneko_lua = require("lsp.config.lua"), -- lua/lsp/config/lua.lua
-  rust_analyzer = require("lsp.config.rust"),
-  -- jsonls = require("lsp.lang.json"),
-  -- tsserver = require("lsp.config.ts"),
-  -- remark_ls = require("lsp.lang.markdown"),
-  -- html = {},
-}
+vim.lsp.set_log_level("debug")
+print(vim.inspect(vim.lsp))
 
--- 自动安装 Language Servers
-for name, _ in pairs(servers) do
-  local server_is_found, server = lsp_installer.get_server(name)
-  if server_is_found then
-    if not server:is_installed() then
-      print("Installing " .. name)
-      server:install()
-    end
-  end
-end
+-- local on_attach = function(client)
+--   require'completion'.on_attach(client)
+-- end
 
-lsp_installer.on_server_ready(function(server)
-  local config = servers[server.name]
-  if config == nil then
-    return
-  end
-  if config.on_setup then
-    config.on_setup(server)
-  else
-    server:setup({})
-  end
-end)
+lsp_installer.settings({
+  ui = {
+      icons = {
+          server_installed = "✓",
+          server_pending = "➜",
+          server_uninstalled = "✗"
+      }
+  }
+})
+
+lspconfig.rust_analyzer.setup({
+  -- on_attach=on_attach,
+  settings = {
+      ["rust-analyzer"] = {
+          assist = {
+              importGranularity = "module",
+              importPrefix = "by_self",
+          },
+          cargo = {
+              loadOutDirsFromCheck = true
+          },
+          procMacro = {
+              enable = true
+          },
+      }
+  }
+})
