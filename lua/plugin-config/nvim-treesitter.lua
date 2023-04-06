@@ -4,6 +4,15 @@ if not status then
     return
 end
 
+
+local status2, _ = pcall(require, "nvim-ts-context-commentstring")
+if not status2 then
+    vim.notify("没有找到 commentstring")
+    return
+end
+
+
+
 treesitter.setup({
     -- 安装 language parser
     -- :TSInstallInfo 命令查看支持的语言
@@ -15,6 +24,7 @@ treesitter.setup({
     },
     -- 注释
     context_commentstring = {
-        enable = true
+        enable = true,
+        enable_autocmd = false,
     }
 })

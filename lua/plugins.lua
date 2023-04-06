@@ -22,6 +22,7 @@ packer.startup(
         use 'windwp/nvim-ts-autotag'
 
         -- 快速注释
+        use 'numToStr/Comment.nvim'
         use 'JoosepAlviste/nvim-ts-context-commentstring'
 
 

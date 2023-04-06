@@ -47,6 +47,8 @@ require("plugins")
 require("keybindings")
 require("colorscheme")
 
+
+
 -- 插件配置
 require("plugin-config.nvim-tree")
 require("plugin-config.lualine")
@@ -61,6 +63,11 @@ require("plugin-config.nvim-ts-autotag")
 require("lsp.setup")
 require("lsp.cmp")
 
+-- 快速注释
+require('Comment').setup({
+    -- 快速注释的增强插件: tsx
+    pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+})
 
 -- symbol in right
 require("symbols-outline").setup()
