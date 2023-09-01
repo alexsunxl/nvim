@@ -29,7 +29,8 @@ vim.o.smartcase = true
 -- 搜索不要高亮
 vim.o.hlsearch = false
 -- 边输入边搜索
-vim.o.incsearch = true
+-- vim.o.incsearch = true
+
 -- 命令行高为2，提供足够的显示空间
 vim.o.cmdheight = 2
 
@@ -38,6 +39,25 @@ vim.o.wildmenu = true
 
 -- 使用增强状态栏插件后不再需要 vim 的模式提示
 vim.o.showmode = false
+
+
+-- 复制到系统的clipboard
+vim.g.clipboard = {
+    name = "WslClipboard",
+    copy = {
+        ["+"] = "/mnt/c/Windows/System32/clip.exe",
+        ["*"] = "/mnt/c/Windows/System32/clip.exe"
+    },
+    -- 粘贴暂时没啥用
+    paste = {
+        ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))'
+    },
+    cache_enable = 0,
+}
+
+
+
 
 
 -- Packer 插件管理
@@ -52,11 +72,13 @@ require("colorscheme")
 -- 插件配置
 require("plugin-config.nvim-tree")
 require("plugin-config.lualine")
+require("plugin-config.bufferline")
 require("plugin-config.telescope")
 require("plugin-config.nvim-treesitter")
 require("plugin-config.null-ls")
 require("plugin-config.nvim-autopairs")
 require("plugin-config.nvim-ts-autotag")
+require("plugin-config.luapad")
 
 
 -- LSP
@@ -71,3 +93,9 @@ require('Comment').setup({
 
 -- symbol in right
 require("symbols-outline").setup()
+
+require("nvim-surround").setup({
+    keymaps = {
+        visual = "s",
+    },
+})

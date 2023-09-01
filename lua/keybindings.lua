@@ -41,6 +41,10 @@ map("n", "<leader>fb", ":Telescope file_browser path=%:p:h select_buffer=true in
     { noremap = true })
 
 
+-- bufferline
+map("n", "<leader>bn", ":BufferLineCyclePrev<CR>", opt)
+map("n", "<leader>bp", ":BufferLineCycleNext<CR>", opt)
+
 
 pluginKeys.nvimTreeList = {
     -- 打开文件或文件夹

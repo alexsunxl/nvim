@@ -3,9 +3,10 @@ packer.startup(
     function(use)
         -- Packer 可以管理自己本身
         use 'wbthomason/packer.nvim'
-        -- 你的插件列表...
+
         use("folke/tokyonight.nvim")
         use({ "kyazdani42/nvim-tree.lua", requires = "kyazdani42/nvim-web-devicons" })
+        use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
         use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
         use({ 'nvim-telescope/telescope.nvim', requires = { "nvim-lua/plenary.nvim" } })
         use 'nvim-telescope/telescope-file-browser.nvim'
@@ -20,6 +21,7 @@ packer.startup(
 
         use 'windwp/nvim-autopairs'
         use 'windwp/nvim-ts-autotag'
+        use 'kylechui/nvim-surround'
 
         -- 快速注释
         use 'numToStr/Comment.nvim'
@@ -48,4 +50,8 @@ packer.startup(
         use("hrsh7th/cmp-nvim-lsp") -- { name = nvim_lsp }
 
         use({ "jose-elias-alvarez/nvim-lsp-ts-utils", requires = "nvim-lua/plenary.nvim" })
+
+
+        -- lua run
+        use 'rafcamlet/nvim-luapad'
     end)
