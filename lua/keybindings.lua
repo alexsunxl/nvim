@@ -6,10 +6,38 @@ local opt = { noremap = true, silent = true }
 -- 插件快捷键
 local pluginKeys = {}
 
+-- functions
+--  auto delete all other buffers
+function _G.deleteOtherBuffers()
+    print('press <leader> bo')
+    --local deleteOtherBuffers = function()
+    local current = vim.api.nvim_get_current_buf()
+    local bufs = vim.api.nvim_list_bufs()
+    for _, buf in ipairs(bufs) do
+        if buf ~= current then
+            vim.api.nvim_buf_delete(buf, { force = true })
+        end
+    end
+    print('delete other buffers success')
+    vim.cmd('BufferLinePick')
+end
+
+function _G.reload_config()
+    -- Source the init.lua file
+    vim.cmd('source $MYVIMRC')
+    -- Get the value of $MYVIMRC
+    local my_vimrc = vim.fn.expand('$MYVIMRC')
+    -- Output a message
+    print("Configuration reloaded from " .. my_vimrc .. "!")
+end
+
+----------------------------------------
 
 map("n", "s", "", opt)
-map("n", "<leader>rc", ":source ~/.config/nvim/init.lua<CR>", opt)
+map("n", "<leader>rc", ":lua _G.reload_config()<CR>", opt)
 
+--
+-- window
 map("n", "<leader>w/", ":vsp<CR>", opt)
 map("n", "<leader>w-", ":sp<CR>", opt)
 -- 关闭其他
@@ -26,7 +54,6 @@ map("n", "<leader>wl", "<C-w>l", opt)
 
 --  nvim tree
 map("n", "<leader>pt", ":NvimTreeToggle<CR>", opt)
-
 map("n", "<leader>po", "<cmd>SymbolsOutline<CR>", { silent = true, noremap = true })
 
 
@@ -44,6 +71,7 @@ map("n", "<leader>fb", ":Telescope file_browser path=%:p:h select_buffer=true in
 -- bufferline
 map("n", "<leader>bn", ":BufferLineCyclePrev<CR>", opt)
 map("n", "<leader>bp", ":BufferLineCycleNext<CR>", opt)
+map("n", "<leader>bo", ":lua _G.deleteOtherBuffers()<CR>", opt) -- lader bo to delete all other buffers
 
 
 pluginKeys.nvimTreeList = {
@@ -118,6 +146,7 @@ pluginKeys.mapTsLSP = function(mapbuf)
     --mapbuf("n", "gr", ":TSLspRenameFile<CR>", opt)
     mapbuf("n", "gi", ":TSLspImportAll<CR>", opt)
 end
+
 
 
 
