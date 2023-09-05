@@ -43,6 +43,9 @@ packer.startup(
         use("hrsh7th/cmp-cmdline")
 
 
+        use('github/copilot.vim')
+
+
         -- snippet 引擎
         use("hrsh7th/vim-vsnip")
         -- 补全源
