@@ -91,7 +91,8 @@ require('Comment').setup({
     pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
 })
 
--- symbol in right
+-- symbol in right 当前文件的索引
+-- A tree like view for symbols in Neovim using the Language Server Protocol. Supports all your favourite languages.
 require("symbols-outline").setup()
 
 require("nvim-surround").setup({

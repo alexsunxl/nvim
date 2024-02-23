@@ -53,16 +53,23 @@ map("n", "<leader>wl", "<C-w>l", opt)
 
 
 --  nvim tree
+-- 左侧文件树
 map("n", "<leader>pt", ":NvimTreeToggle<CR>", opt)
+-- 右侧索引
 map("n", "<leader>po", "<cmd>SymbolsOutline<CR>", { silent = true, noremap = true })
 
 
+--
 -- Telescope
+--
+-- 当前文件内容的模糊查询
+map("n", "<leader>/", ":Telescope current_buffer_fuzzy_find<CR>", opt)
 -- 查找文件
 map("n", "<leader>ff", ":Telescope find_files<CR>", opt)
 -- 全局搜索
 --map("n", "<leader>pf", ":Telescope live_grep<CR>", opt)
 map("n", "<leader>fg", ":Telescope live_grep<CR>", opt)
+
 map("n", "<leader>bb", ":Telescope buffers<CR>", opt)
 map("n", "<leader>fb", ":Telescope file_browser path=%:p:h select_buffer=true initial_mode=normal hidden=true<CR>",
     { noremap = true })
