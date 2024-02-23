@@ -1,7 +1,7 @@
 local status, nvim_tree = pcall(require, "nvim-tree")
 if not status then
     vim.notify("没有找到 nvim-tree")
-  return
+    return
 end
 
 -- 列表操作快捷键
@@ -22,18 +22,23 @@ nvim_tree.setup({
         dotfiles = true,
         custom = { 'node_modules' },
     },
+    renderer = {
+        -- to show root folder
+        root_folder_modifier = ':t',
+    },
     view = {
         -- 宽度
         width = 40,
         -- 也可以 'right'
         side = 'left',
         -- 隐藏根目录
-        hide_root_folder = false,
-        -- 自定义列表中快捷键
-        mappings = {
-            custom_only = false,
-            list = list_keys,
-        },
+        -- 废弃了,改用 root_folder_modifier
+        -- hide_root_folder = false,
+        -- -- 自定义列表中快捷键
+        -- mappings = {
+        --     custom_only = false,
+        --     list = list_keys,
+        -- },
         -- 不显示行数
         number = false,
         relativenumber = false,
