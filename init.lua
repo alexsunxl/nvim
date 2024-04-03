@@ -68,6 +68,10 @@ require("keybindings")
 require("colorscheme")
 
 
+-- fold 折叠
+require("fold")
+
+
 
 -- 插件配置
 require("plugin-config.nvim-tree")
